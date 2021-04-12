@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo alumno</title>
+</head>
+<body>
+    <h2>NuevoAlumno</h2>
+    <p th:text="${numeroRecibido}">hola numero</p>
+    <p th:text="${nombreRecibido}">hola numero</p>
+    <h1>Registrando nuevo alumno</h1>
+    <form method="POST" action = "/alumno/guardar">
+        <label>Nombre:</label>
+        <input type="text" name="nombre"/><br/>
+        <label>Apellido:</label>
+        <input type="text" name="apellido"/><br/>
+        <label>Dni:</label>
+        <input type="text" name="dni"/><br/>
+        <input type="submit" value = "Registrar"/>
+    </form>
+</body>
+</html>
