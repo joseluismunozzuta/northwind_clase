@@ -16,6 +16,7 @@ public class Employee {
     private String title;
     private String titleofcourtesy;
     private Date birthdate;
+    private Date hiredate;
     private String firstname;
     @Lob
     private byte[] picture;
