@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Producto</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body class="container">
+    <h2>Nuevo Producto</h2>
+    <hr />
+    <form method="post" th:action="@{/product/save}">
+        <div class="form-group">
+            <label for="productname">Nombre del producto</label>
+            <input type = "text" class="form-control" name="productname" id="productname">
+        </div>
+        <div class="form-group">
+            <label for="supplier">Proveedor</label>
+            <input type = "text" class="form-control" name="supplier" id="supplier">
+        </div>
+        <div class="form-group">
+            <label for="category">Categoria</label>
+            <select class="form-control" name="category" id="category">
+                <option th:each="categoria: ${listaCategorias}" th:value="${categoria.id}" th:text="${categoria.categoryname}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantityperunit">Cantidad por unidad</label>
+            <input type = "text" class="form-control" name="quantityperunit" id="quantityperunit">
+        </div>
+        <div class="form-group">
+            <label for-="unitprice">Precio Unitario</label>
+            <input type = "text" class="form-control" name="unitprice" id="unitprice" >
+        </div>
+        <div class="form-group">
+            <label for="unitsinstock">Unidades en stock</label>
+            <input type = "text" class="form-control" name="unitsinstock" id="unitsinstock">
+        </div>
+        <div class="form-group">
+            <label for="unitsinorder">Unidades ordenadas</label>
+            <input type = "text" class="form-control" name="unitsinorder" id="unitsinorder">
+        </div>
+        <div class="form-group">
+            <label for="reorderlevel">Nivel de reorden</label>
+            <input type = "text" class="form-control" name="reorderlevel" id="reorderlevel">
+        </div>
+        <div class="form-check pb-2">
+            <input type = "checkbox" class="form-check-input" name = "discontinued" id="discontinued">
+            <label lcass="form-check-label" for = "discontinued">Descontinuado?</label>
+        </div>
+        <a class="btn btn-danger" th:href="@{/product}">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</body>
+</html>
