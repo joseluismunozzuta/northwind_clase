@@ -82,7 +82,7 @@ public class ShipperController {
     }
 
     @PostMapping("/shipper/search")
-    public String searchShipperPruebas(@RequestParam("searchName") String searchname, Model model) {
+    public String searchShipperPruebas(@RequestParam("searchNa me") String searchname, Model model) {
 
         //List<Shipper> shipperOpt = shipperRepository.findByCompanyname(searchname);
         List<Shipper> shipperOpt = shipperRepository.listarTransportitasPorNombre(searchname);
