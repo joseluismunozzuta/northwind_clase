@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -31,34 +32,38 @@ public class ProductController {
     }
 
     @GetMapping("/product/new")
-    public String productNew(Model model){
+    public String productNew(@ModelAttribute("product") Product product, Model model){
         model.addAttribute("listaCategorias",categoryRepository.findAll());
         return "product/newForm";
     }
 
     @PostMapping("/product/save")
-    public String productSave(Product product, RedirectAttributes attr){
-        if(product.getId() == 0 ){
-            attr.addFlashAttribute("msg","Producto creado exitosamente");
+    public String productSave(@ModelAttribute("product") Product product,Model model, RedirectAttributes attr){
+        if((product.getProductname().equals(""))) {
+            model.addAttribute("errorProduct", "El nombre del producto no puede ser vacio");
+            return "product/newForm";
         }else{
-            attr.addFlashAttribute("msg","Producto actualizado exitosamente");
+            if(product.getId() == 0 ){
+                attr.addFlashAttribute("msg","Producto creado exitosamente");
+            }else{
+                attr.addFlashAttribute("msg","Producto actualizado exitosamente");
+            }
+            productRepository.save(product);
+            return "redirect:/product";
         }
-
-        productRepository.save(product);
-        return "redirect:/product";
     }
 
 
     @GetMapping("/product/edit")
-    public String editProduct(@RequestParam("id") int id, Model model){
+    public String editProduct(@ModelAttribute("product") Product product, @RequestParam("id") int id, Model model){
 
         Optional<Product> productOpt = productRepository.findById(id);
 
         if(productOpt.isPresent()){
-            Product product = productOpt.get();
+            product = productOpt.get();
             model.addAttribute("product",product);
             model.addAttribute("listaCategorias",categoryRepository.findAll());
-            return "product/editForm";
+            return "product/newForm";
         }else{
             return "redirect:/product";
         }
