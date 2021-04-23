@@ -14,11 +14,11 @@ public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @GetMapping(value = {"", "/"})
+    /*@GetMapping(value = {"", "/"})
     public String cantidadOrdenesPorCategoria(Model model) {
 
         model.addAttribute("listaOrdenesPorCategoria", categoryRepository.obtenerOrdenesPorCategoria());
         return "category/estadistica";
-    }
+    }*/
 
 }

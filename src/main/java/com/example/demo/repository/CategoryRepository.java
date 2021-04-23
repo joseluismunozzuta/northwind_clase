@@ -11,6 +11,4 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Integer> {
 
-    @Query(value="",nativeQuery=true)
-    List<OrdenesCategoriaDto> obtenerOrdenesPorCategoria();
 }
