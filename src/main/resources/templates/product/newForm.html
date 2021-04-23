@@ -10,6 +10,7 @@
     <h2 th:text="${product.id == 0}?'Nuevo Producto':'Editar producto'"></h2>
     <hr />
     <form method="post" th:action="@{/product/save}" th:object="${product}">
+        <input name = "id" type="hidden" th:field="*{id}">
         <div class="form-group">
             <label for="productname">Nombre del producto</label>
             <input type = "text" class="form-control" name="productname" id="productname" th:field="*{productname}">
