@@ -41,6 +41,7 @@ public class ProductController {
     public String productSave(@ModelAttribute("product") Product product,Model model, RedirectAttributes attr){
         if((product.getProductname().equals(""))) {
             model.addAttribute("errorProduct", "El nombre del producto no puede ser vacio");
+            model.addAttribute("listaCategorias",categoryRepository.findAll());
             return "product/newForm";
         }else{
             if(product.getId() == 0 ){

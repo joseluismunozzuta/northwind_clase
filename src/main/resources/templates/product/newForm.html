@@ -8,6 +8,7 @@
 </head>
 <body class="container">
     <h2 th:text="${product.id == 0}?'Nuevo Producto':'Editar producto'"></h2>
+    <div th:if="${errorProduct != null}" th:text="${errorProduct}" class="alert alert-danger" role="alert"></div>
     <hr />
     <form method="post" th:action="@{/product/save}" th:object="${product}">
         <input name = "id" type="hidden" th:field="*{id}">
