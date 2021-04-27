@@ -6,12 +6,14 @@ import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -38,9 +40,9 @@ public class ProductController {
     }
 
     @PostMapping("/product/save")
-    public String productSave(@ModelAttribute("product") Product product,Model model, RedirectAttributes attr){
-        if((product.getProductname().equals(""))) {
-            model.addAttribute("errorProduct", "El nombre del producto no puede ser vacio");
+    public String productSave(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult, Model model, RedirectAttributes attr){
+
+        if(bindingResult.hasErrors()) {
             model.addAttribute("listaCategorias",categoryRepository.findAll());
             return "product/newForm";
         }else{
