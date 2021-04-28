@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
-    @Query(value="select r.regionDescription as regiondescription, count(e.employeeid) as cantidadempleados\n" +
+    @Query(value="select r.regionDescripcion as regiondescripcion, count(e.employeeid) as cantidadempleados\n" +
             "FROM region r\n" +
             "         inner join territories t on (r.regionid = t.regionid)\n" +
             "         inner join employeeterritories et on (t.territoryid = et.territoryid)\n" +

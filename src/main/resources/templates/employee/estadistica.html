@@ -30,7 +30,7 @@
         <th>Cantidad de empleados</th>
     </tr>
     <tr th:each="empleadoPorRegion : ${listaEmpleadosPorRegion}">
-        <td th:text="${empleadoPorRegion.getRegiondescription()}"></td>
+        <td th:text="${empleadoPorRegion.getRegiondescripcion()}"></td>
         <td th:text="${empleadoPorRegion.getCantidadempleados()}"></td>
     </tr>
 </table>
